@@ -3,8 +3,6 @@
 const fs = require('fs');
 const {PredefineRules, SnifferManager} = require('./lib/SnifferManager');
 
-const Ruler = require('./lib/Ruler');
-
 const ioConfig = {
     // input: './samples/small.htm',
     input: './samples/shopback_index.htm',
@@ -24,7 +22,14 @@ sniffer.setInput(ioConfig.input);
 sniffer.setOutput(ioConfig.output);
 // sniffer.setOutput(fs.createWriteStream(ioConfig.output));
 
-// console.log('HelloWorld!!');
+PredefineRules.isHeadLegal.subRules.push({
+    rule: 'isTagNotExist',
+    tag: 'meta',
+    attribute: 'name',
+    value: 'robots'
+});
+
+console.log(sniffer.manager);
 
 // sniffer.check();
 sniffer.detect();
@@ -35,48 +40,8 @@ sniffer.detect([{
 */
 /*
 sniffer.detect([
-    PredefineRules.isImageWithoutAlt,
-    PredefineRules.isAWithoutRel,
+    // PredefineRules.isImageWithoutAlt,
+    // PredefineRules.isAWithoutRel,
     PredefineRules.isHeadLegal
 ]);
 */
-
-// const r = new Ruler();
-/*
-const ruler = new Ruler({
-    'rule': 'isTagOverLimit',
-    'tag': 'strong',
-    'limit': 15
-});
-const ruler = new Ruler({
-    rule: 'detectSubRules',
-    tag: 'head',
-    subRules: [{
-            rule: 'isTagNotExist',
-            tag: 'title'
-        },
-        {
-            rule: 'isTagWithAttrNotExist',
-            tag: 'meta',
-            attribute: 'name',
-            value: 'description'
-        },
-        {
-            rule: 'isTagWithAttrNotExist',
-            tag: 'meta',
-            attribute: 'name',
-            value: 'keywords'
-        }
-    ]
-});
-*/
-
-// console.log(typeof ruler.limit);
-// console.log(ruler.copy());
-// console.log(ruler['isTagNotExist']());
-// console.log(ruler[ruler.rule]());
-
-
-
-
-
