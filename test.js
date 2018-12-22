@@ -1,15 +1,16 @@
 'use struct'
 
 const { PredefineRules, SnifferManager } = require('./lib/SnifferManager')
+// const { SnifferManager } = require('./lib/SnifferManager')
 
 const ioConfig = {
   // input: './samples/small.htm',
   input: './samples/shopback_index.htm',
   // input: fs.createReadStream('./samples/shopback_index.htm'),
 
-  output: './logs/test_20181222_9.log'
+  // output: './logs/test_20181222_10.log'
   // output: fs.createWriteStream('./logs/test_1.log')
-  // output: 'console'
+  output: 'console'
 }
 
 const sniffer = new SnifferManager()
