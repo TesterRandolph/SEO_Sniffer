@@ -4,8 +4,10 @@
   "description": "A package for checking the SEO.",
   "main": "./lib/SnifferManager.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix lib/*.js"
   },
+  "pre-commit": ["lint"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TesterRandolph/SEO_Sniffer.git"
