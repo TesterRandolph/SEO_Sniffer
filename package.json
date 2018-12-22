@@ -1,6 +1,6 @@
 {
   "name": "seo_sniffer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A package for checking the SEO.",
   "main": "./lib/SnifferManager.js",
   "scripts": {

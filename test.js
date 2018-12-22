@@ -32,12 +32,19 @@ PredefineRules.isHeadLegal.subRules.push({
 sniffer.reinitDefaultRules()
 
 // sniffer.check()
-sniffer.detect()
-/*
+// sniffer.detect()
 sniffer.detect([{
-  attribute: 'name'
+  rule: 'isTagNotExist',
+  tag: 'meta',
+  attribute: 'name',
+  value: 'robots'
+},
+{
+  rule: 'isTagNotExist',
+  tag: 'meta',
+  attribute: 'name',
+  value: 'keywords'
 }])
-*/
 /*
 sniffer.detect([
   // PredefineRules.isImageWithoutAlt,
