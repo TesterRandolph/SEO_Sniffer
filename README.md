@@ -117,7 +117,7 @@ Calling the other check methods to detect by the setting in the subRules.
 
 # Predefine Rules
 ## isImageWithoutAlt
-Detect if any <img /> tag without alt attribute
+Detect if any `<img />` tag without alt attribute
 ```javascript
 {
   rule: 'hasTagWithoutAttr',
@@ -127,7 +127,7 @@ Detect if any <img /> tag without alt attribute
 ```
 
 ## isAWithoutRel
-Detect if any <a /> tag without rel attribute
+Detect if any `<a />` tag without rel attribute
 ```javascript
 {
   rule: 'hasTagWithoutAttr',
@@ -137,10 +137,10 @@ Detect if any <a /> tag without rel attribute
 ```
 
 ## isHeadLegal
-In <head> tag
-- Detect if header doesn’t have <title> tag
-- Detect if header doesn’t have <meta name=“descriptions” ... /> tag
-- Detect if header doesn’t have <meta name=“keywords” ... /> tag
+In `<head>` tag
+- Detect if header doesn’t have `<title>` tag
+- Detect if header doesn’t have `<meta name=“descriptions” ... />` tag
+- Detect if header doesn’t have `<meta name=“keywords” ... />` tag
 ```javascript
 {
   rule: 'detectSubRules',
@@ -165,7 +165,7 @@ In <head> tag
 ```
 
 ## isStrongOverLimit
-Detect if there’re more than 15 <strong> tag in HTML (15 is a value should be configurable by user)
+Detect if there’re more than 15 `<strong>` tag in HTML (15 is a value should be configurable by user)
 ```javascript
 {
   rule: 'isTagOverLimit',
@@ -175,7 +175,7 @@ Detect if there’re more than 15 <strong> tag in HTML (15 is a value should be 
 ```
 
 ## isH1NotOnly
-Detect if a HTML have more than one <H1> tag
+Detect if a HTML have more than one `<H1>` tag
 ```javascript
 {
   rule: 'isTagNotOnly',
