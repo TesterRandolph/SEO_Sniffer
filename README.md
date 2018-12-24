@@ -262,8 +262,8 @@ sniffer.detect([
 ```
 
 ## Modify the Predefine Rules
-If you want to implement additional rules for <meta> tag.
-Ex: Checking <meta name=“robots” />
+If you want to implement additional rules for `<meta>` tag.
+Ex: Checking `<meta name=“robots” />`
 ```javascript
 const { PredefineRules, SnifferManager } = require('seo_sniffer')
 
@@ -290,7 +290,7 @@ sniffer.reinitDefaultRules()
 sniffer.detect()
 ```
 
-If you want to reset the limit of <strong> from 15 to 5
+If you want to reset the limit of `<strong>` from 15 to 5
 ```javascript
 const { PredefineRules, SnifferManager } = require('seo_sniffer')
 
