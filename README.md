@@ -1,14 +1,27 @@
 # SEO_Sniffer
-For checking the SEO.
+Develop a Node.js package to let user can use this package to scan a HTML file and show all of the SEO defects.
 
-
-# Features
+# Features ( Development Requirement )
+1. This package should be production ready and a NPM module
+2. User is free to chain any rules by themselves
+	I. For example, they can only use the rule 1 and 4 or only use rule 2.
+	II. The order of rules is doesn’t matter
+3. User can define and use their own rules easily
+4. The input can be:
+	I. A HTML file (User is able to config the input path)
+	II. Node Readable Stream
+5. The output can be:
+	I. A file (User is able to config the output destination)
+	II. Node Writable Stream
+	III. Console
+6. Your package should be flexible:
+	I. When we want to implement additional rules for <meta> tag, The code changes should be small. Ex: Checking <meta name=“robots” /> existing or not?!
 
 # Prerequisites
-I'm using the Node.js 11.5
+Developing by the Node.js 11.5
 
 # Installation
-```
+```bash
 npm install seo_sniffer
 ```
 
@@ -36,7 +49,7 @@ sniffer.setOnput('PathToFile')
 ```
 
 # Check Methods & Export Reports
-## hasTagWithoutAttr
+## hasTagWithoutAttr()
 Export Tag/Attribute:
 ```
 `Has ${diff} ${tag} tag without ${attribute}.`
@@ -48,7 +61,7 @@ Export Tag/Attribute/Value:
 `No found any ${tag} tag without ${attribute}="${value}".`
 ```
 
-## isTagNotExist
+## isTagNotExist()
 Export Tag:
 ```
 `Not find any match on the ${tag}!!`
@@ -65,7 +78,7 @@ Export Tag/Attribute/Value:
 `Find matches on the ${tag} with ${attribute}="${value}": ${counter}`
 ```
 
-## isTagOverLimit
+## isTagOverLimit()
 Export Tag:
 ```
 `There are ${counter} ${tag} tag, it's over the limit ${limit}!!`
@@ -82,10 +95,10 @@ Export Tag/Attribute/Value:
 `Find matches on the ${tag} with ${attribute}="${value}": ${counter}`
 ```
 
-## isTagNotOnly
+## isTagNotOnly()
 Export is the same with "isTagOverLimit"
 
-## detectSubRules
+## detectSubRules()
 Calling the other check methods to detect by the setting in the subRules.
 
 # Rule Set Format
@@ -104,6 +117,7 @@ Calling the other check methods to detect by the setting in the subRules.
 
 # Predefine Rules
 ## isImageWithoutAlt
+Detect if any <img /> tag without alt attribute
 ```javascript
 {
   rule: 'hasTagWithoutAttr',
@@ -113,6 +127,7 @@ Calling the other check methods to detect by the setting in the subRules.
 ```
 
 ## isAWithoutRel
+Detect if any <a /> tag without rel attribute
 ```javascript
 {
   rule: 'hasTagWithoutAttr',
@@ -122,6 +137,10 @@ Calling the other check methods to detect by the setting in the subRules.
 ```
 
 ## isHeadLegal
+In <head> tag
+- Detect if header doesn’t have <title> tag
+- Detect if header doesn’t have <meta name=“descriptions” ... /> tag
+- Detect if header doesn’t have <meta name=“keywords” ... /> tag
 ```javascript
 {
   rule: 'detectSubRules',
@@ -146,6 +165,7 @@ Calling the other check methods to detect by the setting in the subRules.
 ```
 
 ## isStrongOverLimit
+Detect if there’re more than 15 <strong> tag in HTML (15 is a value should be configurable by user)
 ```javascript
 {
   rule: 'isTagOverLimit',
@@ -155,6 +175,7 @@ Calling the other check methods to detect by the setting in the subRules.
 ```
 
 ## isH1NotOnly
+Detect if a HTML have more than one <H1> tag
 ```javascript
 {
   rule: 'isTagNotOnly',
@@ -268,7 +289,30 @@ sniffer.reinitDefaultRules()
 sniffer.detect()
 ```
 
+If you want to reset the limit of <strong> from 15 to 5
+```javascript
+const { PredefineRules, SnifferManager } = require('seo_sniffer')
+
+const ioConfig = {
+  input: 'PathToFile',
+  // input: fs.createReadStream('PathToFile'),
+
+  output: 'PathToFile'
+  // output: fs.createWriteStream('PathToFile')
+  // output: 'console'
+}
+
+const sniffer = new SnifferManager(ioConfig)
+
+PredefineRules.isStrongOverLimit.limit = 5
+
+sniffer.reinitDefaultRules()
+
+sniffer.detect()
+```
+
 ## Customize the rule
+The Customize rules & the predefine rules can be used in the same time.
 ```javascript
 const { SnifferManager } = require('seo_sniffer')
 
@@ -297,4 +341,36 @@ sniffer.detect([{
 }])
 ```
 
+## Mixed Customize/Predefine rules
+```javascript
+const { SnifferManager } = require('seo_sniffer')
+
+const ioConfig = {
+  input: 'PathToFile',
+  // input: fs.createReadStream('PathToFile'),
+
+  output: 'PathToFile'
+  // output: fs.createWriteStream('PathToFile')
+  // output: 'console'
+}
+
+const sniffer = new SnifferManager(ioConfig)
+
+sniffer.detect([
+  PredefineRules.isStrongOverLimit,
+  PredefineRules.isImageWithoutAlt,
+  {
+    rule: 'isTagNotExist',
+    tag: 'meta',
+    attribute: 'name',
+    value: 'robots'
+  },
+  {
+    rule: 'isTagNotExist',
+    tag: 'meta',
+    attribute: 'name',
+    value: 'keywords'
+  }
+])
+```
 

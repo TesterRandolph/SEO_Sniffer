@@ -22,17 +22,21 @@ sniffer.setInput(ioConfig.input)
 sniffer.setOutput(ioConfig.output)
 // sniffer.setOutput(fs.createWriteStream(ioConfig.output))
 
+/*
 PredefineRules.isHeadLegal.subRules.push({
   rule: 'isTagNotExist',
   tag: 'meta',
   attribute: 'name',
   value: 'robots'
 })
+*/
+PredefineRules.isStrongOverLimit.limit = 5
 
-sniffer.reinitDefaultRules()
+// sniffer.reinitDefaultRules()
 
 // sniffer.check()
 // sniffer.detect()
+/*
 sniffer.detect([{
   rule: 'isTagNotExist',
   tag: 'meta',
@@ -45,6 +49,7 @@ sniffer.detect([{
   attribute: 'name',
   value: 'keywords'
 }])
+*/
 /*
 sniffer.detect([
   // PredefineRules.isImageWithoutAlt,
@@ -52,3 +57,19 @@ sniffer.detect([
   PredefineRules.isHeadLegal
 ])
 */
+sniffer.detect([
+  PredefineRules.isStrongOverLimit,
+  PredefineRules.isImageWithoutAlt,
+  {
+    rule: 'isTagNotExist',
+    tag: 'meta',
+    attribute: 'name',
+    value: 'robots'
+  },
+  {
+    rule: 'isTagNotExist',
+    tag: 'meta',
+    attribute: 'name',
+    value: 'keywords'
+  }
+])
