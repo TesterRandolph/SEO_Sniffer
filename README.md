@@ -344,7 +344,7 @@ sniffer.detect([{
 
 ## Mixed Customize/Predefine rules
 ```javascript
-const { SnifferManager } = require('seo_sniffer')
+const { PredefineRules, SnifferManager } = require('seo_sniffer')
 
 const ioConfig = {
   input: 'PathToFile',
