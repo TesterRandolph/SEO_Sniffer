@@ -15,7 +15,7 @@ Develop a Node.js package to let user can use this package to scan a HTML file a
 	- Node Writable Stream
 	- Console
 6. Your package should be flexible:
-	- When we want to implement additional rules for <meta> tag, The code changes should be small. Ex: Checking <meta name=“robots” /> existing or not?!
+	- When we want to implement additional rules for `<meta>` tag, The code changes should be small. Ex: Checking `<meta name=“robots” />` existing or not?!
 
 # Prerequisites
 Developing by the Node.js 11.5
@@ -114,6 +114,7 @@ Calling the other check methods to detect by the setting in the subRules.
 ```
 - Must have: rule & tag
 - If you want to use the subRules, the rule must be "detectSubRules" and the limit will be useless.
+- The limit will be setting up with a default 0, if you are not setting a value.
 
 # Predefine Rules
 ## isImageWithoutAlt
