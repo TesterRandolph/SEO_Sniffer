@@ -1,4 +1,11 @@
-[![Build Status](https://travis-ci.org/TesterRandolph/SEO_Sniffer.svg?branch=master)](https://travis-ci.org/TesterRandolph/SEO_Sniffer) 
+[![Build Status][travis-image]][travis-url] [![npm version][npm-image]][npm-url] [![License: LGPL v3][license-image]][license-url]
+
+[travis-image]: https://img.shields.io/travis/TesterRandolph/SEO_Sniffer.svg
+[travis-url]: https://travis-ci.org/TesterRandolph/SEO_Sniffer
+[npm-image]: https://badge.fury.io/js/seo_sniffer.svg
+[npm-url]: https://www.npmjs.com/package/seo_sniffer
+[license-image]: https://img.shields.io/badge/License-LGPL%20v3-blue.svg
+[license-url]: https://www.gnu.org/licenses/lgpl-3.0
 
 # SEO_Sniffer
 Develop a Node.js package to let user can use this package to scan a HTML file and show all of the SEO defects.
