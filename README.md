@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TesterRandolph/SEO_Sniffer.svg?branch=master)](https://travis-ci.org/TesterRandolph/SEO_Sniffer) 
+
 # SEO_Sniffer
 Develop a Node.js package to let user can use this package to scan a HTML file and show all of the SEO defects.
 
