@@ -1,4 +1,8 @@
 language: node_js
 node_js:
     - "node"
-    - "lts/*"
+    - "lts/10.*"
+    - "9.*"
+    - "lts/8.*"
+    - "7.*"
+    - "lts/6.*"
