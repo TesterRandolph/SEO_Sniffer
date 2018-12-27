@@ -10,21 +10,32 @@
 # SEO_Sniffer
 Develop a Node.js package to let user can use this package to scan a HTML file and show all of the SEO defects.
 
-# Features ( Development Requirement )
-1. This package should be production ready and a NPM module
-2. User is free to chain any rules by themselves
-	- For example, they can only use the rule 1 and 4 or only use rule 2.
-	- The order of rules is doesn’t matter
-3. User can define and use their own rules easily
-4. The input can be:
-	- A HTML file (User is able to config the input path)
-	- Node Readable Stream
-5. The output can be:
-	- A file (User is able to config the output destination)
-	- Node Writable Stream
-	- Console
-6. Your package should be flexible:
-	- When we want to implement additional rules for `<meta>` tag, The code changes should be small. Ex: Checking `<meta name=“robots” />` existing or not?!
+# Features
+Implement following 5 pre-defined SEO rules for this package
+
+1. Detect if any `<img />` tag without alt attribute
+2. Detect if any `<a />` tag without rel attribute
+3. In `<head>` tag
+  1. Detect if header doesn’t have `<title>` tag
+  2. Detect if header doesn’t have `<meta name=“descriptions” ... />` tag
+  3. Detect if header doesn’t have `<meta name=“keywords” ... />` tag
+4. Detect if there’re more than 15 `<strong>` tag in HTML (15 is a value should be configurable by user)
+5. Detect if a HTML have more than one `<H1>` tag.
+
+# Development Requirement
+1. User is free to chain any rules by themselves
+  1. For example, they can only use the rule 1 and 4 or only use rule 2.
+  2. The order of rules is doesn’t matter
+2. User can define and use their own rules easily
+3. The input can be:
+  1. A HTML file (User is able to config the input path)
+  2. Node Readable Stream
+4. The output can be:
+  1. A file (User is able to config the output destination)
+  2. Node Writable Stream
+  3. Console
+5. Package should be flexible:
+  1. When you want to implement additional rules for `<meta>` tag, The code changes should be small. Ex: Checking `<meta name=“robots” />` existing or not?!
 
 # Prerequisites
 Developing by the Node.js 11.5
