@@ -40,18 +40,36 @@ before(async () => {
     return new Promise((resolve, reject) => {
       let tmp = ''
 
-      reader.on('data', (chunk) => {
+      reader.setMaxListeners(reader.getMaxListeners() + 1)
+      reader.on('data', appendChunk)
+      reader.on('error', onError)
+      reader.on('end', onEnd)
+
+      function appendChunk (chunk) {
         tmp += chunk
-      })
+      }
 
-      reader.on('end', () => {
-        tmp = tmp.replace(/(\n)/igm, '')
-        resolve(tmp)
-      })
-
-      reader.on('error', () => {
+      function onError () {
+        cleanUp()
         reject(new Error('Encounter error on the reading from stream'))
-      })
+      }
+
+      function onEnd () {
+        cleanUp()
+        tmp = removeNewLine(tmp)
+        resolve(tmp)
+      }
+
+      function removeNewLine (tmp) {
+        return tmp.replace(/(\n)/igm, '')
+      }
+
+      function cleanUp () {
+        reader.removeListener('data', appendChunk)
+        reader.removeListener('error', onError)
+        reader.removeListener('end', onEnd)
+        reader.setMaxListeners(reader.getMaxListeners() - 1)
+      }
     })
   }
 
@@ -90,7 +108,7 @@ describe('Ruler extends BaseRuler', () => {
 
         if (result.subRules.length > 0) {
           result.subRules.forEach(function (subRule) {
-            subRule.should.be.instanceof(Ruler)
+            subRule.should.be.instanceOf(Ruler)
           })
         }
 
@@ -132,11 +150,11 @@ describe('Ruler extends BaseRuler', () => {
         typeof config.subRules !== 'undefined' &&
         config.subRules instanceof Array
       ) {
-        (result.subRules).should.be.an.Array()
+        result.subRules.should.be.an.Array()
 
         if (result.subRules.length > 0) {
           result.subRules.forEach(function (subRule) {
-            subRule.should.be.instanceof(Ruler)
+            subRule.should.be.instanceOf(Ruler)
           })
         }
 
@@ -162,7 +180,7 @@ describe('Ruler extends BaseRuler', () => {
         result.subRules.should.be.an.Array()
 
         result.subRules.forEach(function (subRule) {
-          subRule.should.be.instanceof(Ruler)
+          subRule.should.be.instanceOf(Ruler)
         })
       } else {
         result.setSubRules()

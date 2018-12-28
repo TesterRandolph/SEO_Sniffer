@@ -1,6 +1,9 @@
 'use struct'
 
-const { PredefineRules, SnifferManager } = require('./lib/SnifferManager')
+const {
+  // PredefineRules,
+  SnifferManager
+} = require('./lib/SnifferManager')
 // const { SnifferManager } = require('./lib/SnifferManager')
 
 const ioConfig = {
@@ -30,12 +33,12 @@ PredefineRules.isHeadLegal.subRules.push({
   value: 'robots'
 })
 */
-PredefineRules.isStrongOverLimit.limit = 5
+// PredefineRules.isStrongOverLimit.limit = 5
 
 // sniffer.reinitDefaultRules()
 
 // sniffer.check()
-// sniffer.detect()
+sniffer.detect()
 /*
 sniffer.detect([{
   rule: 'isTagNotExist',
@@ -50,12 +53,14 @@ sniffer.detect([{
   value: 'keywords'
 }])
 */
+/*
 sniffer.detect([
   // PredefineRules.isImageWithoutAlt,
   // PredefineRules.isAWithoutRel,
   PredefineRules.isHeadLegal,
   PredefineRules.isH1NotOnly
 ])
+*/
 /*
 sniffer.detect([
   PredefineRules.isStrongOverLimit,
