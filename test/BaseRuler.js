@@ -24,6 +24,7 @@ before(async () => {
       })
 
       reader.on('end', () => {
+        tmp = tmp.replace(/(\n)/igm, '')
         resolve(tmp)
       })
 
@@ -34,8 +35,6 @@ before(async () => {
   }
 
   content = await loader()
-
-  await content.replace(/(\n)/igm, '')
 })
 
 describe('BaseRuler', () => {

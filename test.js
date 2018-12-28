@@ -53,7 +53,8 @@ sniffer.detect([{
 sniffer.detect([
   // PredefineRules.isImageWithoutAlt,
   // PredefineRules.isAWithoutRel,
-  PredefineRules.isHeadLegal
+  PredefineRules.isHeadLegal,
+  PredefineRules.isH1NotOnly
 ])
 /*
 sniffer.detect([
