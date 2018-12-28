@@ -50,13 +50,12 @@ sniffer.detect([{
   value: 'keywords'
 }])
 */
-/*
 sniffer.detect([
   // PredefineRules.isImageWithoutAlt,
   // PredefineRules.isAWithoutRel,
   PredefineRules.isHeadLegal
 ])
-*/
+/*
 sniffer.detect([
   PredefineRules.isStrongOverLimit,
   PredefineRules.isImageWithoutAlt,
@@ -73,3 +72,4 @@ sniffer.detect([
     value: 'keywords'
   }
 ])
+*/
